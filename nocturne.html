@@ -10,7 +10,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);overflow:hidden;overscroll-behavior:none;touch-action:none;user-select:none;-webkit-user-select:none;font-family:"Helvetica Neue",Inter,system-ui,sans-serif}
 canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
-header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 14px) 22px 0;font-size:11px;letter-spacing:.32em;color:var(--mut)}
+header{position:fixed;z-index:6;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 14px) 22px 0;font-size:11px;letter-spacing:.32em;color:var(--mut)}
 #clk{letter-spacing:.12em;font-size:13px}
 #sc{position:fixed;top:calc(env(safe-area-inset-top,0px) + 56px);left:0;right:0;text-align:center;font-weight:200;font-size:54px;letter-spacing:.06em;opacity:.9}
 #msg{position:fixed;left:0;right:0;top:42%;text-align:center;pointer-events:none;transition:opacity .35s}
@@ -21,13 +21,37 @@ header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-be
 #gauge .bar{flex:1;width:3px;background:rgba(255,255,255,.1);border-radius:3px;position:relative;overflow:hidden}
 #gf{position:absolute;left:0;right:0;bottom:0;background:var(--acc);border-radius:3px}
 #gp{font-size:12px;letter-spacing:.1em;color:var(--acc);font-variant-numeric:tabular-nums}
-footer{position:fixed;left:0;right:0;bottom:0;padding:0 22px calc(env(safe-area-inset-bottom,0px) + 18px);text-align:center}
+footer{position:fixed;left:0;right:0;bottom:0;padding:0 22px calc(env(safe-area-inset-bottom,0px) + 64px);text-align:center}
 #sp{display:flex;align-items:center;justify-content:center;gap:12px;padding:17px 22px;border-radius:999px;border:1px solid rgba(201,169,110,.5);background:rgba(201,169,110,.08);color:var(--fg);text-decoration:none;font-size:15px;letter-spacing:.06em;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);touch-action:manipulation}
 #sp:active{background:rgba(201,169,110,.2)}
 #sp i{font-style:normal;color:var(--acc)}
 #sp small{color:var(--mut);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 #ap{display:block;margin:0 0 10px;padding:12px 18px;border-radius:999px;background:var(--acc);color:#0b0b0d;text-decoration:none;font-size:14px;letter-spacing:.06em;opacity:0;pointer-events:none;transition:opacity .25s;touch-action:manipulation}#ap.on{opacity:1;pointer-events:auto}
 footer p{margin:12px 0 0;font-size:11px;letter-spacing:.14em;color:var(--mut)}
+
+.panel{position:fixed;inset:0;z-index:5;display:none;background:var(--bg);overflow-y:auto;touch-action:pan-y;padding:calc(env(safe-area-inset-top,0px) + 54px) 22px calc(env(safe-area-inset-bottom,0px) + 84px)}
+.panel.on{display:block}
+.panel h2{margin:6px 0 16px;font-weight:200;font-size:30px;letter-spacing:.06em}
+.zen{padding:0;overflow:hidden;touch-action:none}
+#vz{width:100%;height:100%;display:block;touch-action:none}
+.zh{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 84px);text-align:center;font-size:11px;letter-spacing:.3em;color:var(--mut);pointer-events:none;margin:0}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;padding:8px 12px calc(env(safe-area-inset-bottom,0px) + 8px);background:rgba(11,11,13,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.07)}
+nav button{all:unset;flex:1;text-align:center;padding:10px 0;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);touch-action:manipulation}
+nav button.on{color:var(--acc)}
+body.away #sc,body.away #msg,body.away footer,body.away #gauge{display:none}
+body.away header{background:var(--bg)}
+#chips{display:flex;gap:8px;overflow-x:auto;margin:0 -22px 14px;padding:0 22px;scrollbar-width:none}
+#chips button{all:unset;flex:none;padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);touch-action:manipulation}
+#chips button.on{color:var(--acc);border-color:rgba(201,169,110,.55);background:rgba(201,169,110,.08)}
+#nlist a{display:block;padding:16px 2px;border-bottom:1px solid rgba(255,255,255,.07);color:var(--fg);text-decoration:none}
+#nlist b{display:block;font-weight:400;font-size:15px;line-height:1.4}
+#nlist small{display:block;margin-top:6px;font-size:11px;letter-spacing:.12em;color:var(--mut)}
+.mut{color:var(--mut);font-size:13px;letter-spacing:.06em}
+.big{font-weight:200;font-size:88px;line-height:1;color:var(--acc)}
+.wd{font-size:20px;font-weight:300;margin:8px 0 4px;letter-spacing:.06em}
+.days{margin-top:28px}
+.days div{display:grid;grid-template-columns:1.1fr 1.2fr 1fr .6fr;gap:6px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px;text-transform:capitalize}
+.days span:nth-child(n+3){text-align:right;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -41,6 +65,10 @@ footer p{margin:12px 0 0;font-size:11px;letter-spacing:.14em;color:var(--mut)}
 <a id="sp" href="https://open.spotify.com/collection/tracks" target="_blank" rel="noopener"><i>&#9829;</i> Mes titres likés <small>Spotify</small></a>
 <p>DEUX DOIGTS &#8597; VOLUME</p>
 </footer>
+<section class="panel" id="p-news"><h2>Actus</h2><div id="chips"></div><div id="nlist"></div></section>
+<section class="panel" id="p-meteo"><h2>Mers-les-Bains</h2><div id="wbox"></div></section>
+<section class="panel zen" id="p-zen"><canvas id="vz"></canvas><p class="zh">TOUCHE ET GLISSE</p></section>
+<nav><button class="on" data-t="home">Accueil</button><button data-t="news">Actus</button><button data-t="meteo">Météo</button><button data-t="zen">Zen</button></nav>
 <script>
 (function(){
 var c=document.getElementById('g'),x=c.getContext('2d'),W,H,D;
@@ -68,6 +96,7 @@ function showG(){
 }
 function setVol(v){vol=cl(v,0,1);if(master)master.gain.value=vol;showG()}
 
+var tab='home';
 /* Jeu */
 var run=false,over=false,lock=0,t=0,score=0,best=0,px=W/2,obs=[],spawn=0,shown=-1;
 try{best=+localStorage.getItem('nocturne-best')||0}catch(e){}
@@ -78,8 +107,9 @@ function end(){
   msg.innerHTML='<b>'+score+'</b><small>Record '+best+' · touche pour rejouer</small>';msg.style.opacity=1;
   tone(110,.6,'triangle',.4);if(navigator.vibrate)navigator.vibrate(40)
 }
-function py(){return H-215}
+function py(){return H-265}
 function frame(n){
+  if(tab!=='home'){last=n;requestAnimationFrame(frame);return}
   var dt=Math.min((n-last)/1000,.05);last=n;
   x.fillStyle='rgba(11,11,13,.3)';x.fillRect(0,0,W,H);
   for(var i=0;i<stars.length;i++){var s=stars[i];s.y+=s.v*dt/H;if(s.y>1)s.y=0;x.fillStyle='rgba(233,230,223,.28)';x.fillRect(s.x*W,s.y*H,s.r,s.r)}
@@ -114,12 +144,14 @@ function begin(cx){
   if(!run)start();drag={x:cx,p:px}
 }
 addEventListener('touchstart',function(e){
+  if(tab!=='home'||(e.target.closest&&e.target.closest('nav')))return;
   if(e.target.closest&&e.target.closest('a'))return;
   e.preventDefault();audio();
   if(e.touches.length>=2){volm={y:avgY(e.touches),v:vol};drag=null;showG();return}
   begin(e.touches[0].clientX)
 },{passive:false});
 addEventListener('touchmove',function(e){
+  if(tab!=='home')return;
   if(e.target.closest&&e.target.closest('a'))return;
   e.preventDefault();
   if(volm&&e.touches.length>=2){volm.moved=true;setVol(volm.v+(volm.y-avgY(e.touches))/(H*.45))}
@@ -131,13 +163,131 @@ addEventListener('touchend',function(e){
   else if(e.touches.length===0)drag=null
 });
 /* Souris (ordinateur) */
-addEventListener('mousedown',function(e){if(e.target.closest('a'))return;audio();begin(e.clientX)});
+addEventListener('mousedown',function(e){if(tab!=='home')return;if(e.target.closest('a'))return;audio();begin(e.clientX)});
 addEventListener('mousemove',function(e){if(drag&&run&&e.buttons)px=cl(drag.p+e.clientX-drag.x,12,W-12)});
 addEventListener('mouseup',function(){drag=null});
 addEventListener('wheel',function(e){audio();setVol(vol-e.deltaY/800)},{passive:true});
 
 function tick(){clk.textContent=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}
 tick();setInterval(tick,10000);
+
+/* Onglets */
+var tabs=document.querySelectorAll('nav button'),panels={news:'p-news',meteo:'p-meteo',zen:'p-zen'};
+function go(t){
+  tab=t;document.body.classList.toggle('away',t!=='home');
+  for(var i=0;i<tabs.length;i++)tabs[i].classList.toggle('on',tabs[i].dataset.t===t);
+  for(var k in panels)document.getElementById(panels[k]).classList.toggle('on',k===t);
+  if(t==='news')loadNews();
+  if(t==='meteo')loadMeteo();
+  if(t==='zen'){vsize();audio()}
+}
+for(var q=0;q<tabs.length;q++)tabs[q].addEventListener('click',function(){go(this.dataset.t)});
+
+/* Actus (Google Actualités via rss2json) */
+var topics={Boxe:'boxe',MMA:'MMA UFC',Arsenal:'Arsenal FC',Foot:'football Ligue 1'},nt='Boxe',cache={};
+var chips=document.getElementById('chips'),nl=document.getElementById('nlist');
+Object.keys(topics).forEach(function(k){var b=document.createElement('button');b.textContent=k;b.onclick=function(){nt=k;loadNews()};chips.appendChild(b)});
+function ago(d){var m=Math.round((Date.now()-(/^\d{4}-/.test(d)?new Date(String(d).replace(' ','T')+'Z'):new Date(d)))/6e4);if(isNaN(m))return'';return m<60?Math.max(m,1)+' min':m<1440?Math.round(m/60)+' h':Math.round(m/1440)+' j'}
+function showNews(items){
+  nl.innerHTML='';
+  items.forEach(function(it){
+    var p=it.title.split(' - '),src=p.length>1?p.pop():'',a=document.createElement('a');
+    a.href=it.link;a.target='_blank';a.rel='noopener';a.innerHTML='<b></b><small></small>';
+    a.firstChild.textContent=p.join(' - ');a.lastChild.textContent=(src?src+' · ':'')+ago(it.pubDate);
+    nl.appendChild(a)
+  })
+}
+function tf(u){var c=new AbortController();setTimeout(function(){c.abort()},7000);return fetch(u,{signal:c.signal})}
+function parseRSS(x){
+  var d=new DOMParser().parseFromString(x,'text/xml'),it=d.querySelectorAll('item'),out=[];
+  for(var i=0;i<it.length&&i<15;i++){
+    var g=function(t){var e=it[i].querySelector(t);return e?e.textContent:''};
+    out.push({title:g('title'),link:g('link'),pubDate:g('pubDate')})
+  }
+  if(!out.length)throw 0;return out
+}
+var proxies=[
+  function(u){return tf('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(u)).then(function(r){return r.json()}).then(function(d){if(d.status!=='ok')throw 0;return d.items})},
+  function(u){return tf('https://api.allorigins.win/raw?url='+encodeURIComponent(u)).then(function(r){return r.text()}).then(parseRSS)},
+  function(u){return tf('https://corsproxy.io/?url='+encodeURIComponent(u)).then(function(r){return r.text()}).then(parseRSS)}
+];
+function getFeed(k,i){
+  i=i||0;
+  var u='https://news.google.com/rss/search?q='+encodeURIComponent(topics[k])+'&hl=fr&gl=FR&ceid=FR:fr';
+  return proxies[i](u).catch(function(e){if(i+1<proxies.length)return getFeed(k,i+1);throw e})
+}
+function loadNews(){
+  var k=nt;
+  [].forEach.call(chips.children,function(b){b.classList.toggle('on',b.textContent===k)});
+  if(cache[k]){showNews(cache[k]);return}
+  nl.innerHTML='<p class="mut">Chargement…</p>';
+  getFeed(k)
+  .then(function(items){cache[k]=items.slice(0,15);if(k===nt)showNews(cache[k])})
+  .catch(function(){if(k===nt)nl.innerHTML='<p class="mut">Actus indisponibles : les services gratuits ne répondent pas. Réessaie dans un moment.</p>'})
+}
+
+/* Météo (Open-Meteo) */
+var wl=document.getElementById('wbox'),wdone=0;
+function WC(c){return c===0?'Ciel dégagé':c<4?'Nuageux':c<50?'Brouillard':c<60?'Bruine':c<70?'Pluie':c<80?'Neige':c<90?'Averses':'Orage'}
+function loadMeteo(){
+  if(wdone&&Date.now()-wdone<6e5)return;
+  wl.innerHTML='<p class="mut">Chargement…</p>';
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=50.067&longitude=1.395&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe%2FParis&forecast_days=5')
+  .then(function(r){return r.json()})
+  .then(function(d){
+    var c=d.current,dl=d.daily,h='<div class="big">'+Math.round(c.temperature_2m)+'°</div><div class="wd">'+WC(c.weather_code)+'</div><div class="mut">Ressenti '+Math.round(c.apparent_temperature)+'° · Vent '+Math.round(c.wind_speed_10m)+' km/h</div><div class="days">';
+    for(var i=0;i<dl.time.length;i++){
+      var dn=i?new Date(dl.time[i]+'T12:00').toLocaleDateString('fr-FR',{weekday:'long'}):'Aujourd’hui';
+      h+='<div><span>'+dn+'</span><span>'+WC(dl.weather_code[i])+'</span><span>'+Math.round(dl.temperature_2m_min[i])+'° / '+Math.round(dl.temperature_2m_max[i])+'°</span><span>'+(dl.precipitation_probability_max[i]||0)+' %</span></div>'
+    }
+    wl.innerHTML=h+'</div>';wdone=Date.now()
+  })
+  .catch(function(){wl.innerHTML='<p class="mut">Météo indisponible pour le moment.</p>'})
+}
+
+/* Zen : visualiseur tactile */
+var vz=document.getElementById('vz'),vx=vz.getContext('2d'),P=[],R=[],vt=0,vl=performance.now(),lastN=0;
+var SC=[261.6,293.7,329.6,392,440,523.3,587.3,659.3];
+function vsize(){vz.width=vz.clientWidth*D;vz.height=vz.clientHeight*D;vx.setTransform(D,0,0,D,0,0);vx.fillStyle='#0b0b0d';vx.fillRect(0,0,vz.clientWidth,vz.clientHeight)}
+addEventListener('resize',function(){if(tab==='zen')vsize()});
+function burst(x,y,n,sp){
+  if(P.length>1200)P.splice(0,200);
+  for(var i=0;i<n;i++){var a=Math.random()*6.2832,s=Math.random()*sp;P.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1,d:.4+Math.random()*.7,r:1+Math.random()*2.2,h:36+Math.random()*14})}
+}
+function vtouch(e,start){
+  e.preventDefault();
+  var b=vz.getBoundingClientRect(),now=performance.now();
+  for(var i=0;i<e.changedTouches.length;i++){
+    var t=e.changedTouches[i],x=t.clientX-b.left,y=t.clientY-b.top;
+    burst(x,y,start?40:6,start?280:90);
+    if(start)R.push({x:x,y:y,r:4,l:1});
+    if(start||now-lastN>140){lastN=now;tone(SC[Math.max(0,Math.min(7,Math.floor(x/b.width*8)))]*(y<b.height/2?2:1),.9,'sine',.12)}
+  }
+}
+vz.addEventListener('touchstart',function(e){audio();vtouch(e,true)},{passive:false});
+vz.addEventListener('touchmove',function(e){vtouch(e,false)},{passive:false});
+function vloop(n){
+  requestAnimationFrame(vloop);
+  var dt=Math.min((n-vl)/1000,.05);vl=n;
+  if(tab!=='zen')return;
+  var w=vz.clientWidth,h=vz.clientHeight;vt+=dt;
+  vx.globalCompositeOperation='source-over';vx.fillStyle='rgba(11,11,13,.14)';vx.fillRect(0,0,w,h);
+  vx.globalCompositeOperation='lighter';
+  for(var k=0;k<3;k++)burst(w/2+Math.cos(vt*(.6+k*.25)+k*2.1)*w*.32,h/2+Math.sin(vt*(.8+k*.2)+k)*h*.28,1,30);
+  for(var i=P.length-1;i>=0;i--){
+    var p=P[i];p.l-=p.d*dt;
+    if(p.l<=0){P.splice(i,1);continue}
+    p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=1-1.8*dt;p.vy=p.vy*(1-1.8*dt)-10*dt;
+    vx.fillStyle='hsla('+p.h+',75%,'+(55+p.l*20)+'%,'+p.l*.9+')';
+    vx.beginPath();vx.arc(p.x,p.y,p.r*(.4+p.l),0,6.2832);vx.fill()
+  }
+  for(var j=R.length-1;j>=0;j--){
+    var o=R[j];o.r+=220*dt;o.l-=1.1*dt;
+    if(o.l<=0){R.splice(j,1);continue}
+    vx.strokeStyle='rgba(201,169,110,'+o.l*.6+')';vx.lineWidth=1.5;vx.beginPath();vx.arc(o.x,o.y,o.r,0,6.2832);vx.stroke()
+  }
+}
+requestAnimationFrame(vloop);
 })();
 </script>
 </body>
